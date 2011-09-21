@@ -40,6 +40,8 @@ XSLT PARAMETERS
 
 	<xsl:param name="doc-name"/>
 	<xsl:param name="doc-desc"/>
+
+  <xsl:param name="image" select="sparql:binding[@name='thumbnail_url']/sparql:uri"/>
     
 	<xsl:template match="/">
 	   <kml>   	
@@ -72,7 +74,7 @@ XSLT PARAMETERS
 	<xsl:template match="sparql:result">
 	  <Placemark>
 	    <name><xsl:value-of select="sparql:binding[@name='name']/sparql:literal"/></name>	  
-      <description><img src="sparql:binding[@name='thumbnail_url']/sparql:uri"/><xsl:value-of select="sparql:binding[@name='description']/sparql:literal"/></description>
+      <description><img src="{sparql:binding[@name='thumbnail_url']/sparql:uri}"/><xsl:value-of select="sparql:binding[@name='description']/sparql:literal"/></description>
 	    <Point>
 	    	<coordinates>
 	    	<xsl:value-of select="sparql:binding[@name='long']/sparql:literal"/><xsl:text>,</xsl:text>
